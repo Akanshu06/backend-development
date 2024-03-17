@@ -1,16 +1,20 @@
 const path=require('path')
 const rootdir=require('../helper/path')
+const Product = require('../models/product'); 
+
 
 exports.getAddProduct=(req,res,next)=>{
     res.sendFile(path.join(rootdir,'views','add-product.html'))
 }
 
 exports.postAddProduct=(req,res,next)=>{
-    console.log(req.body);
+    const product= new Product(req.body);
+    product.save()
     res.redirect('/');
 }
 
 exports.getProducts=(req,res,next)=>{
+    const product = Product.fatchAll()
     res.sendFile(path.join(rootdir,'views','shop.html'))
 }
 
