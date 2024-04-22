@@ -25,7 +25,7 @@ app.use("/", mainRoute);
 
 
 sequelize.sync().then((result)=>{
-    app.listen(3000);
+    app.listen(3000);   
     //app.listen(process.env.PORT);
     console.log(`Server running on port `);
 }).catch(e=>{

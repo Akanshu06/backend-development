@@ -7,7 +7,7 @@ exports.getSignUp = async (req,res,next)=>{
     }
 }
 
-exports.getLogin = async ()=>{
+exports.getLogin = async (req,res)=>{
     try {
         res.sendFile('login.html',{root:'views'})
     } catch (error) {
@@ -15,7 +15,7 @@ exports.getLogin = async ()=>{
     }
 }
 
-exports.main = async ()=>{
+exports.main = async (req,res)=>{
     try {
         res.sendFile('main.html',{root:'views'})
     } catch (error) {
