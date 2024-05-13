@@ -25,8 +25,9 @@ module.exports.postExpanse=async(req,res)=>{
 
 module.exports.deleteExpanse = (req,res)=>{
      const eId = req.params.id;
+     console.log(eId);
      table.destroy({where :{id:eId}}).then((result)=>{
-         console.log(result);
+         console.log(result+'ITS WORKING');
          res.status(200).json({ message: 'Successfull' })
      })
 }

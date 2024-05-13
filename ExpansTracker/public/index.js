@@ -26,16 +26,15 @@ window.addEventListener ('DOMContentLoaded',()=>{
     
   axios.get('http://localhost:4000/getExpanse')
     .then((res)=>{
-        for(let i=0;i<res.data.length;i++){
-           console.log(res.data[i]);
-            showExpanses(res.data[i]);       
+        //console.log(res.data);
+        for(let i=0;i<res.data.Expanse.length;i++){
+           //console.log(res.data.Expanse[i]);
+            showExpanses(res.data.Expanse[i]);       
         }
     }).catch((err)=>{console.log(err);})
-
-
     function showExpanses(Edata){
         const list = document.createElement('li');
-        console.log(Edata.amount);
+        list.id = `${Edata.id}`
         list.innerHTML=`${Edata.amount}-${Edata.description}-${Edata.item}`
                 ul.appendChild(list);   
                 
@@ -45,34 +44,33 @@ window.addEventListener ('DOMContentLoaded',()=>{
                 deleteBtn.id= 'delete-btn';
                 list.appendChild(deleteBtn);
                 deleteBtn.onclick=()=>{
-                   // console.log(data._id);
-                    axios.delete(`http://localhost:400/deleteExpanse/${Edata._id}`)
+                    console.log(list.id);
+                    axios.delete(`http://localhost:4000/deleteExpanse/${list.id}`)
                     ul.removeChild(list);
                 }
-
                 const editBtn = document.createElement('button');
                 editBtn.setAttribute('type','button');
                 editBtn.textContent='Edit';
                 editBtn.id= 'edit-btn';
                 list.appendChild(editBtn);
                 editBtn.onclick=()=>{
-                    axios.put(`http://localhost/editExpanse/${Edata._id}`,
-                    {amount,
-                        description,
-                        item
-                    })
+                    ul.removeChild(list);
+                    const updateExpanse={
+                        amount: document.getElementById('amount').value,
+                        description: document.getElementById('description').value,
+                        item: document.getElementById('item').value
+                    }
+                    axios.put(`http://localhost/editExpanse/${list.id}`,updateExpanse)
                     .then((res)=>{
-                        ul.removeChild(list);
-                        //console.log(1111)
-                        //document.getElementById('description').value=data.description;
-                        document.getElementById('amount').value=Edata.amount;
-                        document.getElementById('description').value=Edata.description;
-                        document.getElementById('item').value=data.Eitem;    
+                        
+                        document.getElementById('amount').value=res.dataamount;
+                        document.getElementById('description').value=res.data.description;
+                        document.getElementById('item').value=res.deta.item;    
                     })
                     .catch((err)=>{console.log(err)});               
                 };
                 amount.value="";
-                description.value="";
-                item.value="";
+                 description.value="";
+                 item.value="";
     }
 })

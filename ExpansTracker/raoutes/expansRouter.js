@@ -5,8 +5,8 @@ const router = express.Router();
 router.post('/postExpanse',expanseController.postExpanse);
 router.get('/getExpanse',expanseController.getExpanse);
 
-router.delete('/deleteRouter',expanseController.deleteExpanse);
+router.delete('/deleteExpanse/:id',expanseController.deleteExpanse);
 
-router.put('/editRouter',expanseController.editEpanse);
+router.put('/editExpanse/:id',expanseController.editEpanse);
 
 module.exports = router;
