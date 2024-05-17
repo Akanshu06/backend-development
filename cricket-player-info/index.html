@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Information</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js"></script>
+</head>
+<body>
+    <h1>Player Information</h1>
+    
+    <form action="#" method="post">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" autocomplete="off"><br>
+        
+        <label for="dob">Date of Birth:</label><br>
+        <input type="date" id="dob" name="dob" autocomplete="off"><br>
+        
+        <label for="photoURL">Photo URL:</label><br>
+        <input type="text" id="photoURL" name="photoURL" autocomplete="off"><br>
+        
+        <label for="birthplace">Birthplace:</label><br>
+        <input type="text" id="birthplace" name="birthplace" autocomplete="off"><br>
+        
+        <label for="career">Career:</label><br>
+        <input type="text" id="career" name="career" autocomplete="off"><br>
+        
+        <label for="matches">Number of Matches:</label><br>
+        <input type="number" id="matches" name="matches"><br>
+        
+        <label for="score">Score:</label><br>
+        <input type="number" id="score" name="score" autocomplete="off"><br>
+        
+        <label for="fifties">Fifties:</label><br>
+        <input type="number" id="fifties" name="fifties" autocomplete="off"><br>
+        
+        <label for="average">Average:</label><br>
+        <input type="number" id="average" name="average" autocomplete="off"><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+
+    <br><br>
+    
+    <h2>Search Player</h2>
+    <form action="#" method="get">
+        <label for="searchPlayer">Player Name:</label>
+        <input type="text" id="searchPlayer" name="searchPlayer" autocomplete="name">>
+        <input type="submit" value="Search">
+    </form>
+
+    <div id="playerInfo"></div>
+    <script src="index.js"></script>
+</body>
+      
+</html>
