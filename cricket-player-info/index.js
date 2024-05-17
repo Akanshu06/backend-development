@@ -43,7 +43,7 @@ function displayData(player){
     playerInfoDiv.innerHTML = `
                 <h3>${player.name}</h3>
                 <p>Date of Birth: ${player.dob}</p>
-                <p>Photo URL: ${player.photoURL}</p>
+                <img src="${player.photoURL}" alt="Player Photo">
                 <p>Birthplace: ${player.birthplace}</p>
                 <p>Career: ${player.career}</p>
                 <p>Number of Matches: ${player.matches}</p>
