@@ -38,26 +38,11 @@ const form2 = document.querySelector('form:nth-of-type(2)');
 form2.addEventListener('submit',(event)=>{
     event.preventDefault();
     const playerName = event.target.searchPlayer.value;
-    axios.get(`http://localhost:2000/get-data`)
+    axios.get(`http://localhost:2000/get-data/${playerName}`)
     .then((response)=>{
-        const playerData = response.data.data;
-        let playerFound = false;
-       console.log(playerData);
-
-        for (let i = 0; i < playerData.length; i++) {
-            const currentPlayer = playerData[i];
-            //console.log(currentPlayer[i]);
-            if (currentPlayer.name.toLowerCase() === playerName.toLowerCase()) {
-                // If player is found, display the data and set playerFound to true
-                displayData(currentPlayer);
-               // console.log(currentPlayer);
-                playerFound = true;
-                break;
-            }
-        }
-        if (!playerFound) {
-            playerInfoDiv.innerHTML = 'Player not found.';
-        }
+        const playerData = response.data.data[0];
+        //console.log(playerData);
+        displayData(playerData)
     })
     .catch((error) => {
         console.error('Error fetching player data:', error);
@@ -86,30 +71,25 @@ function displayData(player){
     playerInfoDiv.appendChild(editBtn);
 }
 
-function isValidDate(dateString) {
-    // Check if the dateString matches the format YYYY-MM-DD
-    const regex = /^\d{4}-\d{2}-\d{2}$/;
-    return regex.test(dateString);
-}
-
 
 function handelEdit(playerToEdit){
-    document.getElementById('name').value=playerToEdit.name;
-    document.getElementById('dob').value=playerToEdit.dob;
-    document.getElementById('photoURL').value=playerToEdit.photoURL;
-    document.getElementById('birthplace').value=playerToEdit.birthplace;
-    document.getElementById('career').value=playerToEdit.career;
-    document.getElementById('matches').value=playerToEdit.matches;
-    document.getElementById('score').value=playerToEdit.score;
-    document.getElementById('fifties').value=playerToEdit.fifties;
-    document.getElementById('average').value=playerToEdit.average;
-
-    
-    const id = playerToEdit.id;
-    axios.put(`http://localhost:2000/update-data/${id}`)
+   console.log (playerToEdit.name)
+        
+    axios.post(`http://localhost:2000/delete-data/${playerToEdit.name}`)
     .then((response)=>{
-        console.log(response);
+    const name=    document.getElementById('name').value=playerToEdit.name;
+   const dob= document.getElementById('dob').value=playerToEdit.dob;
+    const photoURL=document.getElementById('photoURL').value=playerToEdit.photoURL;
+  const birthplace=  document.getElementById('birthplace').value=playerToEdit.birthplace;
+    const career=document.getElementById('career').value=playerToEdit.career;
+    const matches=document.getElementById('matches').value=playerToEdit.matches;
+    const score=document.getElementById('score').value=playerToEdit.score;
+    const fifties = document.getElementById('fifties').value=playerToEdit.fifties;
+    const average =document.getElementById('average').value=playerToEdit.average;
         // Optionally, you can display a success message or perform other actions
+    }).catch((err)=>{
+           console.log(err);
     })
+    
 
 }

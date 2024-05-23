@@ -6,7 +6,7 @@ const database=  require('../database/sequelize');
 
 
 router.post('/post-data',mainCantroller.postInfo);
-router.get('/get-data',mainCantroller.getInfo);
-router.put('/update-data/:id',mainCantroller.updateInfo);
+router.get('/get-data/:name',mainCantroller.getInfo);
+router.post('/delete-data/:name',mainCantroller.deleteInfo)
 database.sync();
 module.exports = router;

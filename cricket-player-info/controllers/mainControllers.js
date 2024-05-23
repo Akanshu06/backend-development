@@ -18,35 +18,27 @@ module.exports.postInfo=async (req,res)=>{
 }
 
 module.exports.getInfo=async(req,res)=>{
-    await infoModel.findAll().then((result)=>{
-          res.status(200).json({data:result})
-    }).catch((err)=>{
-       console.log(err);
+  const { name } = req.params;
+  console.log(name);
+  infoModel.findAll({ where: { name: name } })
+    .then((players) => {
+      res.status(200).json({
+        data: players,
+      });
     })
+    .catch((err) => console.log(err));
 }
 
-module.exports.updateInfo = (req, res) => {
-    const playerId = req.params.id;
-    console.log(playerId);
-    const updatedInfo = {
-        id:req.body.id,
-        name: req.body.name,
-        dob: req.body.dob,
-        photoURL: req.body.photoURL,
-        birthplace: req.body.birthplace,
-        career: req.body.career,
-        matches: req.body.matches,
-        score: req.body.score,
-        fifties: req.body.fifties,
-        average: req.body.average
-    };
-
-    infoModel.update(updatedInfo, { where: { id: playerId } })
-        .then(result => {
-            res.status(200).json({ message: 'Successfully updated player information' });
-        })
-        .catch(error => {
-            console.error('Error updating player information:', error);
-            res.status(500).json({ error: 'Internal server error' });
-        });
-};
+module.exports.deleteInfo=async (req,res)=>{
+  const { name } = req.params;
+  console.log("Delete Call" + name);
+  infoModel.destroy({ where: { name: name } })
+    .then((result) => {
+      res.status(201).json({
+        message: "Player deleted successfully",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
