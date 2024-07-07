@@ -1,10 +1,10 @@
  import express from 'express';
  import bodyparser from 'body-parser';
 
- import tudosRoutes from './routes/todos'
+ import todosRoutes from '../routes/todos'
 const app = express();
 app.use(bodyparser.json())
 
-app.use(tudosRoutes);
+app.use(todosRoutes);
 
-app.listen(3000);
+app.listen({port:3000});
