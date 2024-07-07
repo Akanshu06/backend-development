@@ -9,7 +9,6 @@ const app = express();
 app.use(bodyParser.json({extende:false}));
 app.use(express.static('public'));
 app.use(cors());
-
 app.use('/',mainRauter);
 
 app.listen(2000);
